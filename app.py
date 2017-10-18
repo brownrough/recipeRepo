@@ -37,19 +37,19 @@ def homeReturn(name):
     if name == 'index':
         return redirect(url_for('index'))
 
-@app.route('/categories/addCategory')
+@app.route('/addCategory')
 def showAddCategory():
     return render_template('addCategory.html')
 
-@app.route('/categories/editCategory')
+@app.route('/editCategory')
 def showEditCategory():
     return render_template('editCategory.html')
 
-@app.route('/recipes/addRecipe')
+@app.route('/addRecipe')
 def showAddRecipe():
     return render_template('addRecipe.html')
 
-@app.route('/recipes/editRecipe')
+@app.route('/editRecipe')
 def showEditRecipe():
     return render_template('editRecipe.html')
 
