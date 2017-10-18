@@ -44,7 +44,7 @@ def signIn():
         email = request.form['inputEmail']
         pwd = request.form['inputPassword']
         if email != 'admin@admin.com' or pwd != 'admin':
-            error = "Invalid cridentials entered, Try again"
+            error = "Invalid credentials entered, Try again"
         else:
             session['logged_in'] = True
             return redirect(url_for('showCategory'))
