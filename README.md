@@ -4,4 +4,5 @@ This repo contains the implementation of Yummy Recipes. The project is developed
 The Travis_CI badge
 https://travis-ci.org/brownrough/recipeRepo.svg?branch=master
 
-Coverrals
+Coverrals badge
+[![Coverage Status](https://coveralls.io/repos/github/brownrough/recipeRepo/badge.svg)](https://coveralls.io/github/brownrough/recipeRepo)
