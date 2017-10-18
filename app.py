@@ -37,6 +37,22 @@ def homeReturn(name):
     if name == 'index':
         return redirect(url_for('index'))
 
+@app.route('/categories/addCategory')
+def showAddCategory():
+    return render_template('addCategory.html')
+
+@app.route('/categories/editCategory')
+def showEditCategory():
+    return render_template('editCategory.html')
+
+@app.route('/recipes/addRecipe')
+def showAddRecipe():
+    return render_template('addRecipe.html')
+
+@app.route('/recipes/editRecipe')
+def showEditRecipe():
+    return render_template('editRecipe.html')
+
 @app.route('/send', methods=['GET', 'POST'])
 def signIn():
     error = None
