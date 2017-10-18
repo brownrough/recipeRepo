@@ -48,7 +48,7 @@ def signIn():
         else:
             session['logged_in'] = True
             return redirect(url_for('showCategory'))
-        #return render_template('details.html', email=email, password=pwd)
+    
     return render_template('signin.html', error = error)
 
 @app.route('/logout')
