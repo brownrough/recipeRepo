@@ -11,6 +11,10 @@ Installation
 6. navigate to the root folder and run python app.py
 7. Go to localhost:5000 to view the application
 
+Use the following details for login;
+email: admin@admin.com
+pwd: admin
+
 The Travis_CI badge
 https://travis-ci.org/brownrough/recipeRepo.svg?branch=master
 
