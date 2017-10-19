@@ -1,8 +1,78 @@
 from flask import Flask, render_template, url_for, request, redirect, session
+from flask.ext.sqlalchemy import SQLAlchemy
+from flask_restful import Resource, Api
+from sqlalchemy import create_engine
+from json import dumps
+from flask.ext.jsonpify import jsonify
 
-
+db_connect = create_engine('sqlite:///chinook.db')
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Bienvenue@17@localhost/recipes'
 app.config['SECRET_KEY'] = 'hard to guess string' # for wtf forms
+db = SQLAlchemy(app)
+
+#db_connect = create_engine('sqlite:///chinook.db')
+#app = Flask(__name__)
+#api = Api(app)
+
+class User(db.Model):
+    __tablename__ = 'users'
+    uid = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), unique=True)
+    email = db.Column(db.String(200), unique=True)
+    password = db.Column(db.String(80), unique=True)
+
+    def getUsers(Resource):
+        conn = db_connect.connect() # connect to database
+        query = conn.execute("select * from users") # This line performs query and returns json result
+        return {'users': [i[0] for i in query.cursor.fetchall()]} # Fetches first column that is Employee ID
+
+    
+
+    
+
+api.add_resource(Employees, '/user')
+api.add_resource(Employees_Name, '/user/<uid>')
+api.add_resource(Employees, '/category')
+api.add_resource(Employees_Name, '/category/<cid>')
+api.add_resource(Employees, '/recipe')
+api.add_resource(Employees_Name, '/recipe/<rid>')
+     
+
+    def __repr__(self):
+        return '<Role %r>' % self.name
+
+class Categories(db.Model):
+    __tablename__ = 'categories'
+    cid = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80),  index=True)
+    description = db.Column(db.String(255),  index=True)
+
+    def getCategories(Resource):
+        passconn = db_connect.connect()
+        query = conn.execute("select trackid, name, composer, unitprice from tracks;")
+        result = {'data': [dict(zip(tuple (query.keys()) ,i)) for i in query.cursor]}
+        return jsonify(result)
+    
+
+    def __repr__(self):
+        return '<User %r>' % self.name
+
+class Recipes(db.Model):
+    __tablename__ = 'recipes'
+    rid = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(80), index=True)
+    ingredients = db.Column(db.String(255), index=True)
+    steps = db.Column(db.String(255), index=True)
+    
+    def getRecipes(Resource):
+        conn = db_connect.connect()
+        query = conn.execute("select * from users where uid =%d "  %int(uid))
+        result = {'data': [dict(zip(tuple (query.keys()) ,i)) for i in query.cursor]}
+        return jsonify(result)
+
+    def __repr__(self):
+        return '<User %r>' % self.name
 
 @app.route('/')
 def index():
